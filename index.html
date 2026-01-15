@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCTE CMI5 Quest - Training Adventure</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Title Screen -->
+    <div id="titleScreen" class="screen active">
+        <div class="title-container">
+            <div class="title-stars"></div>
+            <h1 class="game-title">
+                <span class="title-line">PCTE</span>
+                <span class="title-line subtitle">CMI5 QUEST</span>
+            </h1>
+            <div class="title-tagline">~ A Training Adventure ~</div>
+
+            <div class="title-menu">
+                <button class="menu-option" onclick="startNewGame()">
+                    <span class="menu-cursor">▶</span> NEW GAME
+                </button>
+                <button class="menu-option" onclick="continueGame()" id="continueBtn" style="display:none;">
+                    <span class="menu-cursor">▶</span> CONTINUE
+                </button>
+            </div>
+
+            <div class="title-footer">
+                <p>Press START to begin your journey</p>
+                <p class="copyright">© 2024 PCTE Training Division</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Character Creation -->
+    <div id="characterScreen" class="screen">
+        <div class="dialog-box large">
+            <div class="dialog-header">CREATE YOUR HERO</div>
+            <div class="dialog-content">
+                <div class="character-preview">
+                    <div class="sprite-container">
+                        <div class="player-sprite" id="previewSprite"></div>
+                    </div>
+                    <div class="character-stats-preview">
+                        <div class="stat-line">CLASS: <span id="classPreview">TRAINEE</span></div>
+                        <div class="stat-line">LV: 1</div>
+                        <div class="stat-line">HP: 100/100</div>
+                        <div class="stat-line">XP: 0</div>
+                    </div>
+                </div>
+
+                <div class="character-form">
+                    <label class="form-label">ENTER THY NAME:</label>
+                    <input type="text" id="playerName" class="pixel-input" maxlength="12" placeholder="HERO">
+
+                    <label class="form-label">CHOOSE THY CLASS:</label>
+                    <div class="class-options">
+                        <button class="class-btn selected" data-class="developer" onclick="selectClass(this, 'developer')">
+                            <span class="class-icon">⚔</span>
+                            <span class="class-name">DEVELOPER</span>
+                            <span class="class-desc">+XP from code tasks</span>
+                        </button>
+                        <button class="class-btn" data-class="designer" onclick="selectClass(this, 'designer')">
+                            <span class="class-icon">🛡</span>
+                            <span class="class-name">DESIGNER</span>
+                            <span class="class-desc">+XP from content tasks</span>
+                        </button>
+                        <button class="class-btn" data-class="admin" onclick="selectClass(this, 'admin')">
+                            <span class="class-icon">📜</span>
+                            <span class="class-name">ADMIN</span>
+                            <span class="class-desc">+XP from config tasks</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="dialog-footer">
+                <button class="btn-pixel" onclick="confirmCharacter()">CONFIRM</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- World Map -->
+    <div id="worldMap" class="screen">
+        <div class="game-hud">
+            <div class="hud-left">
+                <div class="player-info">
+                    <div class="player-sprite small"></div>
+                    <div class="player-stats">
+                        <div class="stat-name" id="hudName">HERO</div>
+                        <div class="stat-row">
+                            <span>LV</span>
+                            <span id="hudLevel">1</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>CLASS</span>
+                            <span id="hudClass">DEV</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hud-center">
+                <div class="hp-bar-container">
+                    <span class="hp-label">HP</span>
+                    <div class="hp-bar">
+                        <div class="hp-fill" id="hudHpBar"></div>
+                    </div>
+                    <span class="hp-text" id="hudHpText">100/100</span>
+                </div>
+                <div class="xp-bar-container">
+                    <span class="xp-label">XP</span>
+                    <div class="xp-bar">
+                        <div class="xp-fill" id="hudXpBar"></div>
+                    </div>
+                    <span class="xp-text" id="hudXpText">0/100</span>
+                </div>
+            </div>
+            <div class="hud-right">
+                <div class="gold-display">
+                    <span class="gold-icon">★</span>
+                    <span id="hudStars">0</span>
+                </div>
+                <button class="menu-btn" onclick="openGameMenu()">MENU</button>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div class="map-title">~ WORLD OF PCTE ~</div>
+            <div class="world-map-grid">
+                <!-- World 1: Tutorial Village -->
+                <div class="map-location" id="world1" data-world="1" onclick="enterWorld(1)">
+                    <div class="location-icon">🏠</div>
+                    <div class="location-name">TUTORIAL VILLAGE</div>
+                    <div class="location-status" id="world1Status">AVAILABLE</div>
+                    <div class="location-progress">
+                        <div class="progress-dots">
+                            <span class="dot" id="w1d1"></span>
+                            <span class="dot" id="w1d2"></span>
+                            <span class="dot" id="w1d3"></span>
+                            <span class="dot boss" id="w1boss"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Path -->
+                <div class="map-path horizontal" id="path1-2"></div>
+
+                <!-- World 2: Content Caverns -->
+                <div class="map-location locked" id="world2" data-world="2" onclick="enterWorld(2)">
+                    <div class="location-icon">⛰</div>
+                    <div class="location-name">CONTENT CAVERNS</div>
+                    <div class="location-status" id="world2Status">LOCKED</div>
+                    <div class="location-progress">
+                        <div class="progress-dots">
+                            <span class="dot" id="w2d1"></span>
+                            <span class="dot" id="w2d2"></span>
+                            <span class="dot" id="w2d3"></span>
+                            <span class="dot" id="w2d4"></span>
+                            <span class="dot boss" id="w2boss"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Path -->
+                <div class="map-path horizontal" id="path2-3"></div>
+
+                <!-- World 3: Package Palace -->
+                <div class="map-location locked" id="world3" data-world="3" onclick="enterWorld(3)">
+                    <div class="location-icon">🏰</div>
+                    <div class="location-name">PACKAGE PALACE</div>
+                    <div class="location-status" id="world3Status">LOCKED</div>
+                    <div class="location-progress">
+                        <div class="progress-dots">
+                            <span class="dot" id="w3d1"></span>
+                            <span class="dot" id="w3d2"></span>
+                            <span class="dot" id="w3d3"></span>
+                            <span class="dot boss" id="w3boss"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Path -->
+                <div class="map-path horizontal" id="path3-4"></div>
+
+                <!-- World 4: Upload Fortress -->
+                <div class="map-location locked" id="world4" data-world="4" onclick="enterWorld(4)">
+                    <div class="location-icon">🗼</div>
+                    <div class="location-name">UPLOAD FORTRESS</div>
+                    <div class="location-status" id="world4Status">LOCKED</div>
+                    <div class="location-progress">
+                        <div class="progress-dots">
+                            <span class="dot" id="w4d1"></span>
+                            <span class="dot" id="w4d2"></span>
+                            <span class="dot" id="w4d3"></span>
+                            <span class="dot boss" id="w4boss"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Path to Final -->
+                <div class="map-path vertical" id="path4-5"></div>
+
+                <!-- World 5: Final Boss Tower -->
+                <div class="map-location locked final" id="world5" data-world="5" onclick="enterWorld(5)">
+                    <div class="location-icon">👑</div>
+                    <div class="location-name">CERTIFICATION TOWER</div>
+                    <div class="location-status" id="world5Status">LOCKED</div>
+                    <div class="boss-warning">⚠ FINAL BOSS ⚠</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- World/Area Screen -->
+    <div id="areaScreen" class="screen">
+        <div class="game-hud">
+            <!-- Same HUD as world map -->
+            <div class="hud-left">
+                <div class="player-info">
+                    <div class="player-sprite small"></div>
+                    <div class="player-stats">
+                        <div class="stat-name" id="areaHudName">HERO</div>
+                        <div class="stat-row">
+                            <span>LV</span>
+                            <span id="areaHudLevel">1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hud-center">
+                <div class="hp-bar-container">
+                    <span class="hp-label">HP</span>
+                    <div class="hp-bar">
+                        <div class="hp-fill" id="areaHudHpBar"></div>
+                    </div>
+                    <span class="hp-text" id="areaHudHpText">100/100</span>
+                </div>
+                <div class="xp-bar-container">
+                    <span class="xp-label">XP</span>
+                    <div class="xp-bar">
+                        <div class="xp-fill" id="areaHudXpBar"></div>
+                    </div>
+                    <span class="xp-text" id="areaHudXpText">0/100</span>
+                </div>
+            </div>
+            <div class="hud-right">
+                <button class="menu-btn" onclick="returnToMap()">MAP</button>
+            </div>
+        </div>
+
+        <div class="area-container">
+            <div class="area-header">
+                <h2 class="area-title" id="areaTitle">TUTORIAL VILLAGE</h2>
+                <div class="area-subtitle" id="areaSubtitle">Learn the basics of PCTE and CMI5</div>
+            </div>
+
+            <div class="area-content" id="areaContent">
+                <!-- Dynamic content loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Lesson Screen -->
+    <div id="lessonScreen" class="screen">
+        <div class="game-hud compact">
+            <div class="hud-left">
+                <button class="back-btn" onclick="returnToArea()">◀ BACK</button>
+            </div>
+            <div class="hud-center">
+                <span class="lesson-title" id="lessonTitle">LESSON</span>
+            </div>
+            <div class="hud-right">
+                <div class="kolb-indicator" id="kolbIndicator">
+                    <span class="kolb-phase">EXPERIENCE</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-container">
+            <div class="lesson-content" id="lessonContent">
+                <!-- Dynamic lesson content -->
+            </div>
+
+            <div class="lesson-navigation">
+                <button class="btn-pixel" id="lessonPrevBtn" onclick="prevLessonStep()" style="display:none;">◀ BACK</button>
+                <div class="lesson-progress">
+                    <span id="lessonStep">1</span> / <span id="lessonTotal">4</span>
+                </div>
+                <button class="btn-pixel" id="lessonNextBtn" onclick="nextLessonStep()">NEXT ▶</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Boss Battle Screen -->
+    <div id="battleScreen" class="screen">
+        <div class="battle-container">
+            <div class="battle-header">
+                <div class="battle-title">⚔ BOSS BATTLE ⚔</div>
+            </div>
+
+            <div class="battle-arena">
+                <div class="boss-section">
+                    <div class="boss-name" id="bossName">CONFIGURATION CHAOS</div>
+                    <div class="boss-sprite" id="bossSprite">
+                        <div class="boss-image"></div>
+                    </div>
+                    <div class="boss-hp-container">
+                        <div class="boss-hp-bar">
+                            <div class="boss-hp-fill" id="bossHpBar"></div>
+                        </div>
+                        <div class="boss-hp-text" id="bossHpText">500/500</div>
+                    </div>
+                </div>
+
+                <div class="battle-effects" id="battleEffects"></div>
+
+                <div class="player-battle-section">
+                    <div class="player-battle-sprite"></div>
+                    <div class="player-battle-stats">
+                        <div class="battle-stat">
+                            <span id="battlePlayerName">HERO</span>
+                            <span>LV <span id="battlePlayerLevel">1</span></span>
+                        </div>
+                        <div class="player-battle-hp">
+                            <div class="hp-bar">
+                                <div class="hp-fill" id="battlePlayerHpBar"></div>
+                            </div>
+                            <span id="battlePlayerHpText">100/100</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="battle-dialog-box" id="battleDialog">
+                <div class="battle-question" id="battleQuestion">
+                    <!-- Question text here -->
+                </div>
+                <div class="battle-choices" id="battleChoices">
+                    <!-- Answer choices here -->
+                </div>
+            </div>
+
+            <div class="battle-message" id="battleMessage" style="display:none;">
+                <!-- Battle messages/feedback -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Boss Screen -->
+    <div id="finalBossScreen" class="screen">
+        <div class="final-battle-container">
+            <div class="final-battle-header">
+                <div class="final-title glowing">★ FINAL CERTIFICATION EXAM ★</div>
+                <div class="final-subtitle">Defeat the CMI5 GUARDIAN to prove your mastery!</div>
+            </div>
+
+            <div class="final-arena">
+                <div class="final-boss-section">
+                    <div class="final-boss-name" id="finalBossName">CMI5 GUARDIAN</div>
+                    <div class="final-boss-sprite" id="finalBossSprite">
+                        <div class="final-boss-image"></div>
+                        <div class="boss-aura"></div>
+                    </div>
+                    <div class="final-boss-hp-container">
+                        <div class="final-boss-hp-bar">
+                            <div class="final-boss-hp-fill" id="finalBossHpBar"></div>
+                            <div class="hp-segments">
+                                <span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="final-boss-hp-text" id="finalBossHpText">1000/1000</div>
+                    </div>
+                </div>
+
+                <div class="final-battle-status">
+                    <div class="question-counter">
+                        QUESTION <span id="finalQuestionNum">1</span> / <span id="finalQuestionTotal">10</span>
+                    </div>
+                    <div class="accuracy-display">
+                        ACCURACY: <span id="finalAccuracy">0</span>%
+                    </div>
+                </div>
+
+                <div class="final-player-section">
+                    <div class="final-player-sprite"></div>
+                    <div class="final-player-info">
+                        <div id="finalPlayerName">HERO</div>
+                        <div class="final-player-hp">
+                            <span>HP</span>
+                            <div class="hp-bar">
+                                <div class="hp-fill" id="finalPlayerHpBar"></div>
+                            </div>
+                            <span id="finalPlayerHpText">100/100</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-battle-dialog" id="finalBattleDialog">
+                <div class="final-question" id="finalQuestion"></div>
+                <div class="final-choices" id="finalChoices"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Victory Screen -->
+    <div id="victoryScreen" class="screen">
+        <div class="victory-container">
+            <div class="victory-fanfare">★ ★ ★ VICTORY ★ ★ ★</div>
+            <div class="victory-sprite"></div>
+            <div class="victory-message" id="victoryMessage">
+                You have defeated the CMI5 Guardian!
+            </div>
+            <div class="victory-rewards" id="victoryRewards">
+                <div class="reward-item">+500 XP</div>
+                <div class="reward-item">+10 ★</div>
+                <div class="reward-item">TITLE: CMI5 MASTER</div>
+            </div>
+            <div class="certification-badge">
+                <div class="badge-icon">🏆</div>
+                <div class="badge-text">PCTE CMI5 CERTIFIED</div>
+            </div>
+            <button class="btn-pixel large" onclick="showCredits()">CONTINUE</button>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen" class="screen">
+        <div class="gameover-container">
+            <div class="gameover-title">GAME OVER</div>
+            <div class="gameover-sprite"></div>
+            <div class="gameover-message" id="gameoverMessage">
+                The CMI5 Guardian was too powerful...
+            </div>
+            <div class="gameover-stats">
+                <div>Final Score: <span id="gameoverScore">0</span>%</div>
+                <div>Required: 80%</div>
+            </div>
+            <div class="gameover-hint" id="gameoverHint">
+                Review the training materials and try again!
+            </div>
+            <div class="gameover-options">
+                <button class="btn-pixel" onclick="retryFinalBoss()">TRY AGAIN</button>
+                <button class="btn-pixel" onclick="returnToMap()">RETURN TO MAP</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Menu Overlay -->
+    <div id="gameMenu" class="overlay" style="display:none;">
+        <div class="menu-box">
+            <div class="menu-header">MENU</div>
+            <div class="menu-content">
+                <div class="menu-section">
+                    <div class="menu-label">STATUS</div>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <span>NAME</span>
+                            <span id="menuName">HERO</span>
+                        </div>
+                        <div class="status-item">
+                            <span>CLASS</span>
+                            <span id="menuClass">DEVELOPER</span>
+                        </div>
+                        <div class="status-item">
+                            <span>LEVEL</span>
+                            <span id="menuLevel">1</span>
+                        </div>
+                        <div class="status-item">
+                            <span>TOTAL XP</span>
+                            <span id="menuTotalXp">0</span>
+                        </div>
+                        <div class="status-item">
+                            <span>WORLDS CLEARED</span>
+                            <span id="menuWorldsCleared">0/5</span>
+                        </div>
+                        <div class="status-item">
+                            <span>BOSSES DEFEATED</span>
+                            <span id="menuBossesDefeated">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-section">
+                    <div class="menu-label">SKILLS LEARNED</div>
+                    <div class="skills-list" id="menuSkills">
+                        <!-- Dynamic skill list -->
+                    </div>
+                </div>
+
+                <div class="menu-actions">
+                    <button class="btn-pixel" onclick="saveGame()">SAVE GAME</button>
+                    <button class="btn-pixel" onclick="closeGameMenu()">CLOSE</button>
+                    <button class="btn-pixel danger" onclick="quitToTitle()">QUIT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dialog Overlay (for NPCs, tutorials, etc.) -->
+    <div id="dialogOverlay" class="overlay" style="display:none;">
+        <div class="npc-dialog-box">
+            <div class="npc-portrait" id="npcPortrait"></div>
+            <div class="npc-name" id="npcName">ELDER</div>
+            <div class="npc-text" id="npcText"></div>
+            <div class="dialog-continue" onclick="continueDialog()">▼ CONTINUE</div>
+        </div>
+    </div>
+
+    <!-- Level Up Overlay -->
+    <div id="levelUpOverlay" class="overlay" style="display:none;">
+        <div class="levelup-box">
+            <div class="levelup-fanfare">★ LEVEL UP! ★</div>
+            <div class="levelup-content">
+                <div class="new-level">LEVEL <span id="newLevel">2</span></div>
+                <div class="stat-increases">
+                    <div class="stat-up">MAX HP +10</div>
+                    <div class="stat-up" id="skillUnlock" style="display:none;">NEW SKILL UNLOCKED!</div>
+                </div>
+            </div>
+            <button class="btn-pixel" onclick="closeLevelUp()">OK</button>
+        </div>
+    </div>
+
+    <!-- Reward Overlay -->
+    <div id="rewardOverlay" class="overlay" style="display:none;">
+        <div class="reward-box">
+            <div class="reward-header">★ REWARDS ★</div>
+            <div class="reward-content" id="rewardContent">
+                <!-- Dynamic rewards -->
+            </div>
+            <button class="btn-pixel" onclick="closeReward()">COLLECT</button>
+        </div>
+    </div>
+
+    <script src="cmi5.js"></script>
+    <script src="course-content.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
