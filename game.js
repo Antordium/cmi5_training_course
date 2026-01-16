@@ -64,6 +64,11 @@ const SKILL_UNLOCKS = {
 document.addEventListener('DOMContentLoaded', function() {
     checkSavedGame();
     initTitleScreen();
+    // Hide persistent stats bar on initial load (title screen)
+    const statsBar = document.getElementById('persistentStatsBar');
+    if (statsBar) {
+        statsBar.style.display = 'none';
+    }
 });
 
 function checkSavedGame() {
@@ -98,6 +103,13 @@ function createTitleStars() {
 function showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(screenId).classList.add('active');
+
+    // Control persistent stats bar visibility
+    const statsBar = document.getElementById('persistentStatsBar');
+    if (statsBar) {
+        const hideOnScreens = ['titleScreen', 'characterScreen', 'victoryScreen', 'gameOverScreen'];
+        statsBar.style.display = hideOnScreens.includes(screenId) ? 'none' : 'flex';
+    }
 }
 
 function startNewGame() {
@@ -1189,8 +1201,30 @@ function updateAllHUDs() {
     updateHUD('hud');
     // Area HUD
     updateHUD('areaHud');
+    // Persistent stats bar
+    updatePersistentStats();
     // Menu
     updateMenu();
+}
+
+function updatePersistentStats() {
+    const nameEl = document.getElementById('persistName');
+    const levelEl = document.getElementById('persistLevel');
+    const classEl = document.getElementById('persistClass');
+    const hpBar = document.getElementById('persistHpBar');
+    const hpText = document.getElementById('persistHpText');
+    const xpBar = document.getElementById('persistXpBar');
+    const xpText = document.getElementById('persistXpText');
+    const stars = document.getElementById('persistStars');
+
+    if (nameEl) nameEl.textContent = gameState.player.name;
+    if (levelEl) levelEl.textContent = gameState.player.level;
+    if (classEl) classEl.textContent = gameState.player.class.substring(0, 3).toUpperCase();
+    if (hpBar) hpBar.style.width = (gameState.player.hp / gameState.player.maxHp * 100) + '%';
+    if (hpText) hpText.textContent = `${gameState.player.hp}/${gameState.player.maxHp}`;
+    if (xpBar) xpBar.style.width = (gameState.player.xp / gameState.player.xpToNext * 100) + '%';
+    if (xpText) xpText.textContent = `${gameState.player.xp}/${gameState.player.xpToNext}`;
+    if (stars) stars.textContent = gameState.player.stars;
 }
 
 function updateHUD(prefix) {

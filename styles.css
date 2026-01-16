@@ -43,10 +43,12 @@ body {
     font-size: 12px;
     background: var(--ff-black);
     color: var(--ff-white);
-    min-height: 100vh;
+    height: 100vh;
     line-height: 1.8;
     image-rendering: pixelated;
-    overflow-x: hidden;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 /* ==========================================
@@ -54,12 +56,17 @@ body {
    ========================================== */
 .screen {
     display: none;
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .screen.active {
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ==========================================
@@ -67,9 +74,12 @@ body {
    ========================================== */
 #titleScreen {
     background: linear-gradient(180deg, #000022 0%, #0a0a2a 50%, #1a1a4a 100%);
-    display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#titleScreen.active {
+    display: flex;
 }
 
 .title-container {
@@ -196,6 +206,7 @@ body {
         6px 6px 0 rgba(0,0,0,0.5);
     padding: 20px;
     margin: 20px;
+    text-align: left;
 }
 
 .dialog-box.large {
@@ -228,9 +239,13 @@ body {
    ========================================== */
 #characterScreen {
     background: linear-gradient(180deg, #0a0a2a 0%, #1a1a4a 100%);
-    display: flex;
     align-items: center;
     justify-content: center;
+    overflow-y: auto;
+}
+
+#characterScreen.active {
+    display: flex;
 }
 
 .character-preview {
@@ -547,10 +562,17 @@ body {
     background: linear-gradient(180deg, #0a0a2a 0%, #1a1a3a 50%, #0a1a2a 100%);
 }
 
+#worldMap.active {
+    display: flex;
+    flex-direction: column;
+}
+
 .map-container {
-    padding: 30px;
+    padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .map-title {
@@ -697,10 +719,17 @@ body {
 /* ==========================================
    AREA SCREEN
    ========================================== */
+#areaScreen.active {
+    display: flex;
+    flex-direction: column;
+}
+
 .area-container {
-    padding: 30px;
+    padding: 20px;
     max-width: 1000px;
     margin: 0 auto;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .area-header {
@@ -896,14 +925,23 @@ body {
 /* ==========================================
    LESSON SCREEN
    ========================================== */
+#lessonScreen.active {
+    display: flex;
+    flex-direction: column;
+}
+
 .lesson-container {
     padding: 20px;
     max-width: 900px;
     margin: 0 auto;
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .lesson-content {
-    min-height: 60vh;
+    flex: 1;
 }
 
 .step-container {
@@ -1198,10 +1236,17 @@ body {
     background: linear-gradient(180deg, #1a0a0a 0%, #0a0a1a 100%);
 }
 
+#battleScreen.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .battle-container {
     padding: 20px;
     max-width: 900px;
     margin: 0 auto;
+    overflow-y: auto;
 }
 
 .battle-header {
@@ -1421,10 +1466,17 @@ body {
     background: radial-gradient(circle at center, #2a1a3a 0%, #0a0a1a 100%);
 }
 
+#finalBossScreen.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .final-battle-container {
     padding: 20px;
     max-width: 900px;
     margin: 0 auto;
+    overflow-y: auto;
 }
 
 .final-battle-header {
@@ -1675,9 +1727,12 @@ body {
    ========================================== */
 #victoryScreen {
     background: radial-gradient(circle at center, #1a2a1a 0%, #0a1a0a 100%);
-    display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#victoryScreen.active {
+    display: flex;
 }
 
 .victory-container {
@@ -1741,9 +1796,12 @@ body {
 
 #gameOverScreen {
     background: radial-gradient(circle at center, #2a1a1a 0%, #1a0a0a 100%);
-    display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#gameOverScreen.active {
+    display: flex;
 }
 
 .gameover-container {
@@ -2040,6 +2098,115 @@ body {
 @keyframes floatUp {
     0% { opacity: 1; transform: translateX(-50%) translateY(0); }
     100% { opacity: 0; transform: translateX(-50%) translateY(-50px); }
+}
+
+/* ==========================================
+   PERSISTENT PLAYER STATS BAR
+   ========================================== */
+.persistent-stats-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--menu-bg);
+    border-top: 4px solid var(--border-color);
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 500;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.5);
+}
+
+.persistent-stats-bar .stats-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.persistent-stats-bar .player-sprite-mini {
+    width: 32px;
+    height: 32px;
+    background: var(--ff-cyan);
+    border: 2px solid var(--border-color);
+}
+
+.persistent-stats-bar .player-name-class {
+    font-size: 10px;
+}
+
+.persistent-stats-bar .player-name-class .name {
+    color: var(--ff-gold);
+}
+
+.persistent-stats-bar .player-name-class .class-level {
+    color: var(--ff-light-blue);
+    font-size: 9px;
+}
+
+.persistent-stats-bar .stats-center {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.persistent-stats-bar .stat-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+}
+
+.persistent-stats-bar .stat-label {
+    color: var(--ff-gold);
+}
+
+.persistent-stats-bar .bar-mini {
+    width: 100px;
+    height: 10px;
+    background: var(--ff-dark-blue);
+    border: 2px solid var(--border-color);
+}
+
+.persistent-stats-bar .bar-mini .fill {
+    height: 100%;
+    transition: width 0.3s;
+}
+
+.persistent-stats-bar .bar-mini .fill.hp {
+    background: var(--ff-hp-green);
+}
+
+.persistent-stats-bar .bar-mini .fill.xp {
+    background: var(--ff-xp-purple);
+}
+
+.persistent-stats-bar .stats-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+}
+
+.persistent-stats-bar .stars-display {
+    color: var(--ff-gold);
+}
+
+/* Hide persistent bar on title and character screens */
+body:has(#titleScreen.active) .persistent-stats-bar,
+body:has(#characterScreen.active) .persistent-stats-bar,
+body:has(#victoryScreen.active) .persistent-stats-bar,
+body:has(#gameOverScreen.active) .persistent-stats-bar {
+    display: none;
+}
+
+/* Add bottom padding to screens to account for persistent bar */
+#worldMap .map-container,
+#areaScreen .area-container,
+#lessonScreen .lesson-container,
+#battleScreen .battle-container,
+#finalBossScreen .final-battle-container {
+    padding-bottom: 80px;
 }
 
 /* ==========================================

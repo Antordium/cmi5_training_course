@@ -534,6 +534,32 @@
         </div>
     </div>
 
+    <!-- Persistent Player Stats Bar -->
+    <div class="persistent-stats-bar" id="persistentStatsBar">
+        <div class="stats-left">
+            <div class="player-sprite-mini"></div>
+            <div class="player-name-class">
+                <div class="name" id="persistName">HERO</div>
+                <div class="class-level">LV <span id="persistLevel">1</span> <span id="persistClass">DEV</span></div>
+            </div>
+        </div>
+        <div class="stats-center">
+            <div class="stat-display">
+                <span class="stat-label">HP</span>
+                <div class="bar-mini"><div class="fill hp" id="persistHpBar"></div></div>
+                <span id="persistHpText">100/100</span>
+            </div>
+            <div class="stat-display">
+                <span class="stat-label">XP</span>
+                <div class="bar-mini"><div class="fill xp" id="persistXpBar"></div></div>
+                <span id="persistXpText">0/100</span>
+            </div>
+        </div>
+        <div class="stats-right">
+            <span class="stars-display">★ <span id="persistStars">0</span></span>
+        </div>
+    </div>
+
     <script src="cmi5.js"></script>
     <script src="course-content.js"></script>
     <script src="game.js"></script>

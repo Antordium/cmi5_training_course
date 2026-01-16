@@ -575,3 +575,8 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('beforeunload', function() {
     CMI5.terminate();
 });
+
+// Global function for game.js to call
+function completeCmi5(passed, score) {
+    CMI5.completeCourse(score / 100, passed);
+}
