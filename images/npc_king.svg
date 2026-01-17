@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- King NPC - World 5: Certification Tower -->
+  <!-- Majestic king with crown and royal cape -->
+
+  <!-- Cape -->
+  <rect x="12" y="28" width="40" height="32" fill="#c0392b"/>
+  <rect x="14" y="30" width="36" height="28" fill="#e74c3c"/>
+
+  <!-- Cape fur trim -->
+  <rect x="12" y="56" width="40" height="4" fill="#ecf0f1"/>
+  <rect x="14" y="56" width="4" height="4" fill="#2c3e50"/>
+  <rect x="22" y="56" width="4" height="4" fill="#2c3e50"/>
+  <rect x="30" y="56" width="4" height="4" fill="#2c3e50"/>
+  <rect x="38" y="56" width="4" height="4" fill="#2c3e50"/>
+  <rect x="46" y="56" width="4" height="4" fill="#2c3e50"/>
+
+  <!-- Body/tunic -->
+  <rect x="22" y="32" width="20" height="24" fill="#2c3e50"/>
+  <rect x="28" y="32" width="8" height="24" fill="#f1c40f"/>
+
+  <!-- Belt -->
+  <rect x="22" y="44" width="20" height="4" fill="#8b4513"/>
+  <rect x="30" y="43" width="4" height="6" fill="#f1c40f"/>
+
+  <!-- Arms -->
+  <rect x="16" y="32" width="6" height="16" fill="#2c3e50"/>
+  <rect x="42" y="32" width="6" height="16" fill="#2c3e50"/>
+
+  <!-- Hands -->
+  <rect x="16" y="46" width="6" height="4" fill="#f5deb3"/>
+  <rect x="42" y="46" width="6" height="4" fill="#f5deb3"/>
+
+  <!-- Scepter -->
+  <rect x="46" y="36" width="4" height="20" fill="#f1c40f"/>
+  <rect x="44" y="32" width="8" height="6" fill="#9b59b6"/>
+  <rect x="46" y="28" width="4" height="6" fill="#f1c40f"/>
+  <rect x="44" y="26" width="8" height="4" fill="#3498db"/>
+
+  <!-- Head -->
+  <rect x="24" y="12" width="16" height="16" fill="#f5deb3"/>
+
+  <!-- Eyes -->
+  <rect x="27" y="18" width="3" height="4" fill="#2c3e50"/>
+  <rect x="34" y="18" width="3" height="4" fill="#2c3e50"/>
+
+  <!-- Beard -->
+  <rect x="26" y="24" width="12" height="6" fill="#95a5a6"/>
+  <rect x="28" y="28" width="8" height="4" fill="#bdc3c7"/>
+
+  <!-- Crown -->
+  <rect x="22" y="4" width="20" height="10" fill="#f1c40f"/>
+  <rect x="24" y="0" width="4" height="6" fill="#f1c40f"/>
+  <rect x="30" y="0" width="4" height="4" fill="#f1c40f"/>
+  <rect x="36" y="0" width="4" height="6" fill="#f1c40f"/>
+
+  <!-- Crown gems -->
+  <rect x="25" y="1" width="2" height="2" fill="#e74c3c"/>
+  <rect x="31" y="0" width="2" height="2" fill="#3498db"/>
+  <rect x="37" y="1" width="2" height="2" fill="#2ecc71"/>
+  <rect x="30" y="6" width="4" height="4" fill="#9b59b6"/>
+
+  <!-- Shoes -->
+  <rect x="24" y="56" width="6" height="4" fill="#2c3e50"/>
+  <rect x="34" y="56" width="6" height="4" fill="#2c3e50"/>
+</svg>

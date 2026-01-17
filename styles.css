@@ -342,8 +342,10 @@ body {
 
 .class-icon {
     display: block;
-    font-size: 24px;
-    margin-bottom: 8px;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 8px auto;
+    image-rendering: pixelated;
 }
 
 .class-name {
@@ -764,9 +766,33 @@ body {
 .npc-sprite {
     width: 64px;
     height: 64px;
-    background: var(--ff-purple);
     border: 2px solid var(--border-color);
     flex-shrink: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--ff-dark-blue);
+    image-rendering: pixelated;
+}
+
+.npc-sprite.elder {
+    background-image: url('images/npc_elder.svg');
+}
+
+.npc-sprite.miner {
+    background-image: url('images/npc_miner.svg');
+}
+
+.npc-sprite.royal {
+    background-image: url('images/npc_royal.svg');
+}
+
+.npc-sprite.guard {
+    background-image: url('images/npc_guard.svg');
+}
+
+.npc-sprite.king {
+    background-image: url('images/npc_king.svg');
 }
 
 .npc-bubble {

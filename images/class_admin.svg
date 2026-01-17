@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Admin Class - Professional with suit and clipboard -->
+
+  <!-- Suit jacket -->
+  <rect x="18" y="30" width="28" height="26" fill="#2c3e50"/>
+
+  <!-- Suit lapels -->
+  <rect x="22" y="30" width="6" height="16" fill="#34495e"/>
+  <rect x="36" y="30" width="6" height="16" fill="#34495e"/>
+
+  <!-- Shirt -->
+  <rect x="28" y="30" width="8" height="20" fill="#ecf0f1"/>
+
+  <!-- Tie -->
+  <rect x="30" y="32" width="4" height="16" fill="#e74c3c"/>
+  <rect x="29" y="32" width="6" height="3" fill="#c0392b"/>
+
+  <!-- Arms -->
+  <rect x="12" y="32" width="8" height="14" fill="#2c3e50"/>
+  <rect x="44" y="32" width="8" height="14" fill="#2c3e50"/>
+
+  <!-- Hands -->
+  <rect x="12" y="44" width="6" height="4" fill="#f5deb3"/>
+  <rect x="46" y="44" width="6" height="4" fill="#f5deb3"/>
+
+  <!-- Head -->
+  <rect x="24" y="12" width="16" height="16" fill="#f5deb3"/>
+
+  <!-- Hair (neat and professional) -->
+  <rect x="24" y="8" width="16" height="6" fill="#4a4a4a"/>
+  <rect x="22" y="10" width="4" height="4" fill="#4a4a4a"/>
+  <rect x="38" y="10" width="4" height="4" fill="#4a4a4a"/>
+
+  <!-- Eyes (focused) -->
+  <rect x="27" y="18" width="3" height="4" fill="#2c3e50"/>
+  <rect x="34" y="18" width="3" height="4" fill="#2c3e50"/>
+
+  <!-- Slight professional smile -->
+  <rect x="29" y="26" width="6" height="1" fill="#c0392b"/>
+
+  <!-- Badge/ID -->
+  <rect x="38" y="36" width="6" height="8" fill="#ecf0f1"/>
+  <rect x="39" y="37" width="4" height="3" fill="#3498db"/>
+  <rect x="39" y="41" width="4" height="2" fill="#7f8c8d"/>
+
+  <!-- Clipboard in hand -->
+  <rect x="4" y="36" width="12" height="16" fill="#d4a574"/>
+  <rect x="6" y="34" width="8" height="4" fill="#7f8c8d"/>
+  <rect x="6" y="40" width="8" height="2" fill="#2c3e50"/>
+  <rect x="6" y="44" width="8" height="2" fill="#2c3e50"/>
+  <rect x="6" y="48" width="6" height="2" fill="#2c3e50"/>
+
+  <!-- Checkmarks on clipboard -->
+  <rect x="12" y="40" width="2" height="2" fill="#2ecc71"/>
+  <rect x="12" y="44" width="2" height="2" fill="#2ecc71"/>
+
+  <!-- Pants -->
+  <rect x="22" y="56" width="8" height="8" fill="#34495e"/>
+  <rect x="34" y="56" width="8" height="8" fill="#34495e"/>
+
+  <!-- Dress shoes -->
+  <rect x="20" y="60" width="10" height="4" fill="#1a1a2e"/>
+  <rect x="34" y="60" width="10" height="4" fill="#1a1a2e"/>
+</svg>

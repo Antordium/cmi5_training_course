@@ -25,3 +25,5 @@ Thumbs.db
 # videos/*.webm
 # audio/*.mp3
 # audio/*.ogg
+node_modules/
+dist/
