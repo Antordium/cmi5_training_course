@@ -1432,6 +1432,7 @@ function updatePersistentStats() {
     const xpBar = document.getElementById('persistXpBar');
     const xpText = document.getElementById('persistXpText');
     const stars = document.getElementById('persistStars');
+    const sprite = document.getElementById('persistSprite');
 
     if (nameEl) nameEl.textContent = gameState.player.name;
     if (levelEl) levelEl.textContent = gameState.player.level;
@@ -1441,6 +1442,7 @@ function updatePersistentStats() {
     if (xpBar) xpBar.style.width = (gameState.player.xp / gameState.player.xpToNext * 100) + '%';
     if (xpText) xpText.textContent = `${gameState.player.xp}/${gameState.player.xpToNext}`;
     if (stars) stars.textContent = gameState.player.stars;
+    if (sprite) sprite.className = 'player-sprite-mini ' + gameState.player.class;
 }
 
 function updateHUD(prefix) {
@@ -1452,6 +1454,7 @@ function updateHUD(prefix) {
     const xpBar = document.getElementById(prefix + 'XpBar');
     const xpText = document.getElementById(prefix + 'XpText');
     const stars = document.getElementById(prefix + 'Stars');
+    const sprite = document.getElementById(prefix + 'Sprite');
 
     if (nameEl) nameEl.textContent = gameState.player.name;
     if (levelEl) levelEl.textContent = gameState.player.level;
@@ -1461,6 +1464,7 @@ function updateHUD(prefix) {
     if (xpBar) xpBar.style.width = (gameState.player.xp / gameState.player.xpToNext * 100) + '%';
     if (xpText) xpText.textContent = `${gameState.player.xp}/${gameState.player.xpToNext}`;
     if (stars) stars.textContent = gameState.player.stars;
+    if (sprite) sprite.className = 'player-sprite small ' + gameState.player.class;
 }
 
 function updateMenu() {

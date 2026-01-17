@@ -455,8 +455,24 @@ body {
 .player-sprite.small {
     width: 32px;
     height: 32px;
-    background: var(--ff-cyan);
     border: 2px solid var(--border-color);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--ff-dark-blue);
+    image-rendering: pixelated;
+}
+
+.player-sprite.small.developer {
+    background-image: url('images/class_developer.svg');
+}
+
+.player-sprite.small.designer {
+    background-image: url('images/class_designer.svg');
+}
+
+.player-sprite.small.admin {
+    background-image: url('images/class_admin.svg');
 }
 
 .player-stats {
@@ -2406,8 +2422,24 @@ body {
 .persistent-stats-bar .player-sprite-mini {
     width: 32px;
     height: 32px;
-    background: var(--ff-cyan);
     border: 2px solid var(--border-color);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--ff-dark-blue);
+    image-rendering: pixelated;
+}
+
+.persistent-stats-bar .player-sprite-mini.developer {
+    background-image: url('images/class_developer.svg');
+}
+
+.persistent-stats-bar .player-sprite-mini.designer {
+    background-image: url('images/class_designer.svg');
+}
+
+.persistent-stats-bar .player-sprite-mini.admin {
+    background-image: url('images/class_admin.svg');
 }
 
 .persistent-stats-bar .player-name-class {
