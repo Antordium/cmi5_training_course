@@ -269,10 +269,26 @@ body {
 }
 
 .player-sprite {
-    width: 32px;
-    height: 32px;
-    background: var(--ff-cyan);
-    /* Placeholder - would be actual sprite */
+    width: 64px;
+    height: 64px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--ff-dark-blue);
+    border: 2px solid var(--border-color);
+    image-rendering: pixelated;
+}
+
+.player-sprite.developer {
+    background-image: url('images/class_developer.svg');
+}
+
+.player-sprite.designer {
+    background-image: url('images/class_designer.svg');
+}
+
+.player-sprite.admin {
+    background-image: url('images/class_admin.svg');
 }
 
 .character-stats-preview {

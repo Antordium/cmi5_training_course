@@ -69,6 +69,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (statsBar) {
         statsBar.style.display = 'none';
     }
+    // Set default player sprite
+    const previewSprite = document.getElementById('previewSprite');
+    if (previewSprite) {
+        previewSprite.className = 'player-sprite developer';
+    }
 });
 
 function checkSavedGame() {
@@ -133,6 +138,13 @@ function selectClass(btn, className) {
     btn.classList.add('selected');
     gameState.player.class = className;
     document.getElementById('classPreview').textContent = className.toUpperCase();
+
+    // Update player sprite preview
+    const previewSprite = document.getElementById('previewSprite');
+    if (previewSprite) {
+        previewSprite.className = 'player-sprite ' + className;
+    }
+
     playSound('select');
 }
 
