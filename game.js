@@ -128,6 +128,7 @@ function continueGame() {
     showScreen('worldMap');
     updateAllHUDs();
     updateWorldMap();
+    initializePlayerSprites();
 }
 
 // ==========================================
@@ -166,8 +167,32 @@ function confirmCharacter() {
         showScreen('worldMap');
         updateAllHUDs();
         updateWorldMap();
+        initializePlayerSprites();
         saveGame();
     });
+}
+
+function initializePlayerSprites() {
+    // Ensure all player sprite elements have the correct class
+    const playerClass = gameState.player.class || 'developer';
+
+    // World map HUD sprite
+    const hudSprite = document.getElementById('hudSprite');
+    if (hudSprite) {
+        hudSprite.className = 'player-sprite small ' + playerClass;
+    }
+
+    // Area screen HUD sprite
+    const areaHudSprite = document.getElementById('areaHudSprite');
+    if (areaHudSprite) {
+        areaHudSprite.className = 'player-sprite small ' + playerClass;
+    }
+
+    // Persistent stats bar sprite
+    const persistSprite = document.getElementById('persistSprite');
+    if (persistSprite) {
+        persistSprite.className = 'player-sprite-mini ' + playerClass;
+    }
 }
 
 // ==========================================
