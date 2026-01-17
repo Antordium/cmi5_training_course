@@ -589,33 +589,215 @@ function renderDragDrop(step) {
 
 function renderSequence(step) {
     let html = '<div class="sequence-container">';
-    html += '<p>Arrange these steps in the correct order:</p>';
+    html += '<p>Drag items to arrange them in the correct order:</p>';
     html += '<div class="sequence-items" id="sequenceItems">';
     const shuffled = [...step.items].sort(() => Math.random() - 0.5);
     shuffled.forEach((item, i) => {
-        html += `<div class="sequence-item" data-correct="${step.items.indexOf(item)}">${item}</div>`;
+        const correctIndex = step.items.indexOf(item);
+        html += `<div class="sequence-item" draggable="true" data-correct="${correctIndex}" data-current="${i}">${item}</div>`;
     });
     html += '</div>';
-    html += `<button class="btn-pixel" onclick="checkSequence(${JSON.stringify(step.items).replace(/"/g, '&quot;')})">CHECK ORDER</button>`;
+    html += '<div class="sequence-feedback" id="sequenceFeedback" style="display:none;"></div>';
+    html += `<button class="btn-pixel" id="checkSequenceBtn" onclick="checkSequence()">CHECK ORDER</button>`;
     html += '</div>';
+
+    // Store correct order for checking
+    window.currentSequenceItems = step.items;
+
+    // Initialize drag and drop after render
+    setTimeout(() => initSequenceDragDrop(), 100);
+
     return html;
+}
+
+function initSequenceDragDrop() {
+    const container = document.getElementById('sequenceItems');
+    if (!container) return;
+
+    const items = container.querySelectorAll('.sequence-item');
+    let draggedItem = null;
+
+    items.forEach(item => {
+        item.addEventListener('dragstart', (e) => {
+            draggedItem = item;
+            item.classList.add('dragging');
+        });
+
+        item.addEventListener('dragend', () => {
+            item.classList.remove('dragging');
+            draggedItem = null;
+        });
+
+        item.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            if (draggedItem && draggedItem !== item) {
+                const rect = item.getBoundingClientRect();
+                const midY = rect.top + rect.height / 2;
+                if (e.clientY < midY) {
+                    container.insertBefore(draggedItem, item);
+                } else {
+                    container.insertBefore(draggedItem, item.nextSibling);
+                }
+            }
+        });
+    });
+}
+
+function checkSequence() {
+    const container = document.getElementById('sequenceItems');
+    const feedback = document.getElementById('sequenceFeedback');
+    const nextBtn = document.getElementById('lessonNextBtn');
+    const checkBtn = document.getElementById('checkSequenceBtn');
+
+    if (!container || !window.currentSequenceItems) return;
+
+    const items = container.querySelectorAll('.sequence-item');
+    let allCorrect = true;
+
+    items.forEach((item, index) => {
+        const correctIndex = parseInt(item.dataset.correct);
+        if (correctIndex === index) {
+            item.classList.add('correct');
+            item.classList.remove('incorrect');
+        } else {
+            item.classList.add('incorrect');
+            item.classList.remove('correct');
+            allCorrect = false;
+        }
+    });
+
+    if (allCorrect) {
+        feedback.innerHTML = '<div class="feedback-correct">CORRECT! All items are in the right order.</div>';
+        feedback.className = 'sequence-feedback correct';
+        playSound('correct');
+        awardXP(15, 'interactive');
+
+        // Enable next button
+        if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.classList.remove('disabled');
+        }
+        checkBtn.disabled = true;
+        checkBtn.textContent = 'COMPLETED';
+    } else {
+        feedback.innerHTML = '<div class="feedback-incorrect">Not quite right. Try rearranging the items.</div>';
+        feedback.className = 'sequence-feedback incorrect';
+        playSound('wrong');
+    }
+
+    feedback.style.display = 'block';
 }
 
 function renderMatching(step) {
     let html = '<div class="matching-container">';
+    html += '<p>Click a left item, then click its matching right item:</p>';
+    html += '<div class="matching-columns">';
     html += '<div class="match-left">';
     step.pairs.forEach((pair, i) => {
-        html += `<div class="match-item left" data-id="${i}">${pair.left}</div>`;
+        html += `<div class="match-item left" data-id="${i}" onclick="selectMatchItem(this, 'left')">${pair.left}</div>`;
     });
     html += '</div>';
     html += '<div class="match-right">';
     const shuffledRight = [...step.pairs].sort(() => Math.random() - 0.5);
-    shuffledRight.forEach((pair, i) => {
+    shuffledRight.forEach((pair) => {
         const originalIndex = step.pairs.findIndex(p => p.right === pair.right);
-        html += `<div class="match-item right" data-id="${originalIndex}">${pair.right}</div>`;
+        html += `<div class="match-item right" data-id="${originalIndex}" onclick="selectMatchItem(this, 'right')">${pair.right}</div>`;
     });
-    html += '</div></div>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="matching-feedback" id="matchingFeedback" style="display:none;"></div>';
+    html += `<button class="btn-pixel" id="checkMatchingBtn" onclick="checkMatching(${step.pairs.length})">CHECK MATCHES</button>`;
+    html += '</div>';
+
+    // Reset matching state
+    window.matchingState = {
+        selectedLeft: null,
+        matches: {},
+        totalPairs: step.pairs.length
+    };
+
     return html;
+}
+
+function selectMatchItem(element, side) {
+    if (element.classList.contains('matched')) return;
+
+    const state = window.matchingState;
+    if (!state) return;
+
+    if (side === 'left') {
+        // Deselect previous left selection
+        document.querySelectorAll('.match-item.left.selected').forEach(el => el.classList.remove('selected'));
+        element.classList.add('selected');
+        state.selectedLeft = element;
+    } else if (side === 'right' && state.selectedLeft) {
+        // Try to make a match
+        const leftId = state.selectedLeft.dataset.id;
+        const rightId = element.dataset.id;
+
+        // Check if this is a correct match
+        if (leftId === rightId) {
+            // Correct match
+            state.selectedLeft.classList.remove('selected');
+            state.selectedLeft.classList.add('matched', 'correct');
+            element.classList.add('matched', 'correct');
+            state.matches[leftId] = true;
+            playSound('correct');
+        } else {
+            // Incorrect match - show briefly then reset
+            const leftElement = state.selectedLeft; // Save reference before clearing
+            leftElement.classList.add('incorrect');
+            element.classList.add('incorrect');
+            playSound('wrong');
+
+            setTimeout(() => {
+                leftElement.classList.remove('selected', 'incorrect');
+                element.classList.remove('incorrect');
+            }, 500);
+        }
+
+        state.selectedLeft = null;
+
+        // Check if all matched
+        if (Object.keys(state.matches).length === state.totalPairs) {
+            const feedback = document.getElementById('matchingFeedback');
+            const nextBtn = document.getElementById('lessonNextBtn');
+            const checkBtn = document.getElementById('checkMatchingBtn');
+
+            feedback.innerHTML = '<div class="feedback-correct">EXCELLENT! All items matched correctly!</div>';
+            feedback.className = 'matching-feedback correct';
+            feedback.style.display = 'block';
+
+            awardXP(15, 'interactive');
+
+            if (nextBtn) {
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('disabled');
+            }
+            if (checkBtn) {
+                checkBtn.style.display = 'none';
+            }
+        }
+    }
+}
+
+function checkMatching(totalPairs) {
+    const state = window.matchingState;
+    const feedback = document.getElementById('matchingFeedback');
+
+    if (!state) return;
+
+    const matchedCount = Object.keys(state.matches).length;
+
+    if (matchedCount === totalPairs) {
+        feedback.innerHTML = '<div class="feedback-correct">All matches complete!</div>';
+        feedback.className = 'matching-feedback correct';
+    } else {
+        feedback.innerHTML = `<div class="feedback-incorrect">You have ${matchedCount} of ${totalPairs} matches. Keep going!</div>`;
+        feedback.className = 'matching-feedback incorrect';
+    }
+
+    feedback.style.display = 'block';
 }
 
 function renderFillBlank(step) {
@@ -790,6 +972,17 @@ function startBossBattle(worldNum) {
     document.getElementById('bossName').textContent = currentBoss.name;
     document.getElementById('bossHpText').textContent = `${bossHP}/${bossMaxHP}`;
     document.getElementById('bossHpBar').style.width = '100%';
+
+    // Set boss sprite image
+    const bossImage = document.querySelector('#bossSprite .boss-image');
+    if (bossImage && currentBoss.sprite) {
+        bossImage.style.backgroundImage = `url('${currentBoss.sprite}')`;
+        bossImage.style.backgroundSize = 'contain';
+        bossImage.style.backgroundRepeat = 'no-repeat';
+        bossImage.style.backgroundPosition = 'center';
+        bossImage.style.width = '100%';
+        bossImage.style.height = '100%';
+    }
 
     document.getElementById('battlePlayerName').textContent = gameState.player.name;
     document.getElementById('battlePlayerLevel').textContent = gameState.player.level;
@@ -977,6 +1170,17 @@ function startFinalBoss() {
     document.getElementById('finalBossHpBar').style.width = '100%';
     document.getElementById('finalQuestionTotal').textContent = finalTotalQuestions;
     document.getElementById('finalAccuracy').textContent = '0';
+
+    // Set final boss sprite image
+    const finalBossImage = document.querySelector('#finalBossSprite .final-boss-image');
+    if (finalBossImage && currentBoss.sprite) {
+        finalBossImage.style.backgroundImage = `url('${currentBoss.sprite}')`;
+        finalBossImage.style.backgroundSize = 'contain';
+        finalBossImage.style.backgroundRepeat = 'no-repeat';
+        finalBossImage.style.backgroundPosition = 'center';
+        finalBossImage.style.width = '100%';
+        finalBossImage.style.height = '100%';
+    }
 
     document.getElementById('finalPlayerName').textContent = gameState.player.name;
     updateFinalPlayerHP();

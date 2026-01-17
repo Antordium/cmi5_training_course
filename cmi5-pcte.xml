@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    CMI5 Package for PCTE - GitHub Pages Hosted Content
+    Generated: 2026-01-16
+    Content URL: https://antordium.github.io/cmi5_training_course/
+
+    Upload this file to PCTE. The actual course content is hosted on GitHub Pages.
+-->
+<courseStructure xmlns="https://w3id.org/xapi/profiles/cmi5/v1/CourseStructure.xsd">
+
+    <course id="http://pcte.mil/training/pcte-training-rpg">
+        <title>
+            <langstring lang="en-US">PCTE Training RPG: Master the Art of CMI5 Content Creation</langstring>
+        </title>
+        <description>
+            <langstring lang="en-US">An RPG-style interactive course that teaches learners how to create and upload CMI5-compliant training content to the Persistent Cyber Training Environment (PCTE). Journey through 5 worlds, defeat bosses through scenario-based learning, and prove your mastery in the final certification exam.</langstring>
+        </description>
+    </course>
+
+    <!-- World 1: Tutorial Village - PCTE & CMI5 Fundamentals -->
+    <block id="http://pcte.mil/training/pcte-training-rpg/world/1">
+        <title>
+            <langstring lang="en-US">World 1: Tutorial Village - PCTE &amp; CMI5 Fundamentals</langstring>
+        </title>
+        <description>
+            <langstring lang="en-US">Begin your journey by learning the basics of PCTE and the CMI5 specification.</langstring>
+        </description>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/1/lesson/1">
+            <title>
+                <langstring lang="en-US">Lesson 1.1: Welcome to PCTE</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Learn what PCTE is and why it's used for cyber training.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-1-lesson-1</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>CompletedOrPassed</moveOn>
+        </au>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/1/lesson/2">
+            <title>
+                <langstring lang="en-US">Lesson 1.2: Understanding CMI5</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Discover the CMI5 specification and how it enables training interoperability.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-1-lesson-2</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>CompletedOrPassed</moveOn>
+        </au>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/1/lesson/3">
+            <title>
+                <langstring lang="en-US">Lesson 1.3: The xAPI Foundation</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Understand xAPI statements and how they track learning activities.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-1-lesson-3</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>CompletedOrPassed</moveOn>
+        </au>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/1/boss">
+            <title>
+                <langstring lang="en-US">Boss Battle: The Guardian of Basics</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Prove your understanding of PCTE and CMI5 fundamentals.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-1-boss</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>Passed</moveOn>
+            <masteryScore>0.8</masteryScore>
+        </au>
+    </block>
+
+    <!-- World 2: Content Caverns - Creating Training Content -->
+    <block id="http://pcte.mil/training/pcte-training-rpg/world/2">
+        <title>
+            <langstring lang="en-US">World 2: Content Caverns - Creating Training Content</langstring>
+        </title>
+        <description>
+            <langstring lang="en-US">Learn to create engaging multimedia training content with videos, images, and interactive elements.</langstring>
+        </description>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/2/lesson/1">
+            <title>
+                <langstring lang="en-US">Lesson 2.1: Video Content Creation</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Master the art of creating effective training videos.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-2-lesson-1</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>CompletedOrPassed</moveOn>
+        </au>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/2/lesson/2">
+            <title>
+                <langstring lang="en-US">Lesson 2.2: Images &amp; Graphics</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Learn best practices for visual content in training.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-2-lesson-2</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>CompletedOrPassed</moveOn>
+        </au>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/2/lesson/3">
+            <title>
+                <langstring lang="en-US">Lesson 2.3: Interactive Elements</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Build engaging quizzes, scenarios, and interactive content.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-2-lesson-3</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>CompletedOrPassed</moveOn>
+        </au>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/2/lesson/4">
+            <title>
+                <langstring lang="en-US">Lesson 2.4: Kolb's Learning Cycle</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Apply instructional design principles using Kolb's experiential learning model.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-2-lesson-4</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>CompletedOrPassed</moveOn>
+        </au>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/2/boss">
+            <title>
+                <langstring lang="en-US">Boss Battle: The Content Chimera</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Demonstrate your content creation expertise.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-2-boss</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>Passed</moveOn>
+            <masteryScore>0.8</masteryScore>
+        </au>
+    </block>
+
+    <!-- World 3: Package Palace - CMI5 Packaging -->
+    <block id="http://pcte.mil/training/pcte-training-rpg/world/3">
+        <title>
+            <langstring lang="en-US">World 3: Package Palace - CMI5 Packaging</langstring>
+        </title>
+        <description>
+            <langstring lang="en-US">Learn to structure and package your content for CMI5 compliance.</langstring>
+        </description>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/3/lesson/1">
+            <title>
+                <langstring lang="en-US">Lesson 3.1: The cmi5.xml Manifest</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Understand and create the course structure manifest file.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-3-lesson-1</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>CompletedOrPassed</moveOn>
+        </au>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/3/lesson/2">
+            <title>
+                <langstring lang="en-US">Lesson 3.2: JavaScript Integration</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Implement CMI5/xAPI tracking in your course code.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-3-lesson-2</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>CompletedOrPassed</moveOn>
+        </au>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/3/lesson/3">
+            <title>
+                <langstring lang="en-US">Lesson 3.3: Packaging &amp; Validation</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Package your course correctly and validate CMI5 compliance.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-3-lesson-3</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>CompletedOrPassed</moveOn>
+        </au>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/3/boss">
+            <title>
+                <langstring lang="en-US">Boss Battle: The Packaging Phantom</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Prove your CMI5 packaging mastery.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-3-boss</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>Passed</moveOn>
+            <masteryScore>0.8</masteryScore>
+        </au>
+    </block>
+
+    <!-- World 4: Upload Fortress - Uploading to PCTE -->
+    <block id="http://pcte.mil/training/pcte-training-rpg/world/4">
+        <title>
+            <langstring lang="en-US">World 4: Upload Fortress - Uploading to PCTE</langstring>
+        </title>
+        <description>
+            <langstring lang="en-US">Master the PCTE interface and upload your training content.</langstring>
+        </description>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/4/lesson/1">
+            <title>
+                <langstring lang="en-US">Lesson 4.1: Navigating PCTE</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Learn to navigate the PCTE portal and content management system.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-4-lesson-1</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>CompletedOrPassed</moveOn>
+        </au>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/4/lesson/2">
+            <title>
+                <langstring lang="en-US">Lesson 4.2: The Upload Process</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Step-by-step guide to uploading CMI5 packages to PCTE.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-4-lesson-2</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>CompletedOrPassed</moveOn>
+        </au>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/4/lesson/3">
+            <title>
+                <langstring lang="en-US">Lesson 4.3: Testing &amp; Troubleshooting</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Verify your upload and resolve common issues.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-4-lesson-3</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>CompletedOrPassed</moveOn>
+        </au>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/4/boss">
+            <title>
+                <langstring lang="en-US">Boss Battle: The Upload Overlord</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Demonstrate your PCTE upload expertise.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-4-boss</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>Passed</moveOn>
+            <masteryScore>0.8</masteryScore>
+        </au>
+    </block>
+
+    <!-- World 5: Certification Tower - Final Exam -->
+    <block id="http://pcte.mil/training/pcte-training-rpg/world/5">
+        <title>
+            <langstring lang="en-US">World 5: Certification Tower - Final Exam</langstring>
+        </title>
+        <description>
+            <langstring lang="en-US">Face the ultimate challenge and earn your PCTE Content Creator certification.</langstring>
+        </description>
+
+        <au id="http://pcte.mil/training/pcte-training-rpg/world/5/final-boss">
+            <title>
+                <langstring lang="en-US">Final Boss: The Certification Dragon</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Complete the comprehensive 20-question final exam. Score 80% or higher to pass and earn your certification.</langstring>
+            </description>
+            <url>https://antordium.github.io/cmi5_training_course/index.html#world-5-final-boss</url>
+            <launchMethod>AnyWindow</launchMethod>
+            <moveOn>Passed</moveOn>
+            <masteryScore>0.8</masteryScore>
+        </au>
+    </block>
+
+    <!-- Learning Objectives -->
+    <objectives>
+        <objective id="http://pcte.mil/training/pcte-training-rpg/objective/understand-pcte">
+            <title>
+                <langstring lang="en-US">Understand PCTE Platform</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Demonstrate understanding of the Persistent Cyber Training Environment and its purpose.</langstring>
+            </description>
+        </objective>
+
+        <objective id="http://pcte.mil/training/pcte-training-rpg/objective/understand-cmi5">
+            <title>
+                <langstring lang="en-US">Understand CMI5 Specification</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Demonstrate understanding of CMI5 and xAPI for learning content interoperability.</langstring>
+            </description>
+        </objective>
+
+        <objective id="http://pcte.mil/training/pcte-training-rpg/objective/create-content">
+            <title>
+                <langstring lang="en-US">Create Training Content</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Ability to create effective multimedia training content with videos, images, and interactives.</langstring>
+            </description>
+        </objective>
+
+        <objective id="http://pcte.mil/training/pcte-training-rpg/objective/apply-kolb">
+            <title>
+                <langstring lang="en-US">Apply Kolb's Learning Cycle</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Ability to structure content using experiential learning principles.</langstring>
+            </description>
+        </objective>
+
+        <objective id="http://pcte.mil/training/pcte-training-rpg/objective/package-cmi5">
+            <title>
+                <langstring lang="en-US">Package CMI5 Content</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Ability to create cmi5.xml manifests and properly package training content.</langstring>
+            </description>
+        </objective>
+
+        <objective id="http://pcte.mil/training/pcte-training-rpg/objective/implement-xapi">
+            <title>
+                <langstring lang="en-US">Implement xAPI Tracking</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Ability to implement JavaScript code for xAPI statement tracking.</langstring>
+            </description>
+        </objective>
+
+        <objective id="http://pcte.mil/training/pcte-training-rpg/objective/upload-pcte">
+            <title>
+                <langstring lang="en-US">Upload Content to PCTE</langstring>
+            </title>
+            <description>
+                <langstring lang="en-US">Ability to navigate PCTE, upload CMI5 packages, and troubleshoot issues.</langstring>
+            </description>
+        </objective>
+    </objectives>
+
+</courseStructure>

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Confusion Specter - World 1 Boss -->
+  <!-- A ghostly figure with question marks swirling around it -->
+
+  <!-- Glow effect -->
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="specterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#4A235A;stop-opacity:0.7"/>
+    </linearGradient>
+    <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FF6B6B"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Main ghost body -->
+  <path d="M128 30
+           C60 30 40 80 40 130
+           C40 180 60 200 70 220
+           L70 230 L90 210 L90 230 L110 210 L110 230
+           L130 210 L150 230 L150 210 L170 230 L170 210 L190 230
+           L190 220
+           C200 200 220 180 220 130
+           C220 80 200 30 128 30Z"
+        fill="url(#specterGradient)"
+        filter="url(#glow)"
+        opacity="0.85"/>
+
+  <!-- Inner ghostly wisps -->
+  <ellipse cx="128" cy="120" rx="50" ry="60" fill="#8E44AD" opacity="0.5"/>
+
+  <!-- Eyes - glowing red -->
+  <ellipse cx="100" cy="100" rx="18" ry="22" fill="#1a1a2e"/>
+  <ellipse cx="160" cy="100" rx="18" ry="22" fill="#1a1a2e"/>
+  <ellipse cx="100" cy="100" rx="12" ry="15" fill="url(#eyeGlow)"/>
+  <ellipse cx="160" cy="100" rx="12" ry="15" fill="url(#eyeGlow)"/>
+  <ellipse cx="103" cy="95" rx="4" ry="5" fill="#fff" opacity="0.8"/>
+  <ellipse cx="163" cy="95" rx="4" ry="5" fill="#fff" opacity="0.8"/>
+
+  <!-- Mouth - wavy/uncertain expression -->
+  <path d="M95 145 Q110 155 128 145 Q145 135 160 145"
+        stroke="#2C3E50" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Floating question marks -->
+  <g fill="#FFD700" font-family="Arial, sans-serif" font-weight="bold" font-size="24" filter="url(#glow)">
+    <text x="45" y="60" opacity="0.9">?</text>
+    <text x="200" y="55" opacity="0.8">?</text>
+    <text x="30" y="160" opacity="0.7">?</text>
+    <text x="215" y="150" opacity="0.85">?</text>
+    <text x="60" y="200" opacity="0.6">?</text>
+    <text x="185" y="195" opacity="0.75">?</text>
+  </g>
+
+  <!-- Swirling confusion effect -->
+  <circle cx="50" cy="90" r="6" fill="#00D4FF" opacity="0.6">
+    <animate attributeName="cy" values="90;80;90" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="210" cy="85" r="5" fill="#00D4FF" opacity="0.5">
+    <animate attributeName="cy" values="85;95;85" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="35" cy="140" r="4" fill="#E74C3C" opacity="0.6">
+    <animate attributeName="cx" values="35;45;35" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="225" cy="130" r="5" fill="#E74C3C" opacity="0.5">
+    <animate attributeName="cx" values="225;215;225" dur="2.8s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Pixel-art style border for retro feel -->
+  <rect x="2" y="2" width="252" height="252" fill="none" stroke="#9B59B6" stroke-width="4" rx="8"/>
+</svg>

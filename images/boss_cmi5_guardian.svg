@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- CMI5 Guardian - Final Boss -->
+  <!-- A majestic dragon-like entity representing the ultimate CMI5 certification challenge -->
+
+  <defs>
+    <filter id="finalGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="dragonGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="50%" style="stop-color:#8E44AD"/>
+      <stop offset="100%" style="stop-color:#4A235A"/>
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F1C40F"/>
+      <stop offset="100%" style="stop-color:#D4AC0D"/>
+    </linearGradient>
+    <radialGradient id="fireGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#F39C12"/>
+      <stop offset="100%" style="stop-color:#E74C3C"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Aura background -->
+  <circle cx="128" cy="128" r="120" fill="none" stroke="#9B59B6" stroke-width="2" opacity="0.3">
+    <animate attributeName="r" values="120;125;120" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="128" cy="128" r="100" fill="none" stroke="#F1C40F" stroke-width="1" opacity="0.5">
+    <animate attributeName="r" values="100;105;100" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Dragon body -->
+  <path d="M128 40
+           C80 45 55 80 50 120
+           C45 160 60 190 80 210
+           L100 230 L128 235 L156 230 L176 210
+           C196 190 211 160 206 120
+           C201 80 176 45 128 40Z"
+        fill="url(#dragonGradient)"
+        filter="url(#finalGlow)"/>
+
+  <!-- Dragon head/crown crest -->
+  <path d="M128 25 L110 15 L115 40 L128 35 L141 40 L146 15 Z"
+        fill="url(#goldGradient)"
+        filter="url(#finalGlow)"/>
+  <path d="M100 30 L85 20 L95 45 Z" fill="url(#goldGradient)"/>
+  <path d="M156 30 L171 20 L161 45 Z" fill="url(#goldGradient)"/>
+
+  <!-- Eyes (powerful, glowing) -->
+  <ellipse cx="105" cy="85" rx="20" ry="18" fill="#1a1a2e"/>
+  <ellipse cx="155" cy="85" rx="20" ry="18" fill="#1a1a2e"/>
+  <ellipse cx="105" cy="85" rx="12" ry="10" fill="url(#fireGradient)" filter="url(#finalGlow)"/>
+  <ellipse cx="155" cy="85" rx="12" ry="10" fill="url(#fireGradient)" filter="url(#finalGlow)"/>
+  <ellipse cx="108" cy="82" rx="4" ry="4" fill="#fff"/>
+  <ellipse cx="158" cy="82" rx="4" ry="4" fill="#fff"/>
+
+  <!-- Snout -->
+  <path d="M110 105 Q128 130 146 105 Q140 115 128 120 Q116 115 110 105"
+        fill="#4A235A"/>
+
+  <!-- Nostrils with fire -->
+  <circle cx="118" cy="110" r="4" fill="#1a1a2e"/>
+  <circle cx="138" cy="110" r="4" fill="#1a1a2e"/>
+
+  <!-- Mouth -->
+  <path d="M100 125 Q128 145 156 125" stroke="#2C3E50" stroke-width="3" fill="none"/>
+
+  <!-- Wings -->
+  <path d="M45 100 L20 60 L35 90 L25 50 L50 85 L40 40 L65 80 L55 90 Z"
+        fill="#8E44AD" stroke="#9B59B6" stroke-width="2" opacity="0.9"/>
+  <path d="M211 100 L236 60 L221 90 L231 50 L206 85 L216 40 L191 80 L201 90 Z"
+        fill="#8E44AD" stroke="#9B59B6" stroke-width="2" opacity="0.9"/>
+
+  <!-- Chest emblem - CMI5 badge -->
+  <circle cx="128" cy="165" r="30" fill="#1a1a2e" stroke="url(#goldGradient)" stroke-width="4"/>
+  <text x="128" y="162" font-family="Arial" font-size="12" font-weight="bold" fill="url(#goldGradient)" text-anchor="middle">CMI5</text>
+  <text x="128" y="178" font-family="Arial" font-size="8" fill="#F1C40F" text-anchor="middle">80%</text>
+
+  <!-- Floating certification symbols -->
+  <g fill="url(#goldGradient)" font-family="Arial" font-size="16" filter="url(#finalGlow)">
+    <text x="35" y="150" opacity="0.8">★</text>
+    <text x="215" y="145" opacity="0.9">★</text>
+    <text x="25" y="200" opacity="0.7">★</text>
+    <text x="225" y="195" opacity="0.85">★</text>
+  </g>
+
+  <!-- Claws -->
+  <path d="M75 215 L65 235 L75 225 L70 240 L80 225 L78 238 L88 220"
+        fill="#4A235A" stroke="#2C3E50" stroke-width="1"/>
+  <path d="M181 215 L191 235 L181 225 L186 240 L176 225 L178 238 L168 220"
+        fill="#4A235A" stroke="#2C3E50" stroke-width="1"/>
+
+  <!-- Energy particles -->
+  <circle cx="40" cy="80" r="5" fill="#F1C40F" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="220" cy="75" r="4" fill="#F1C40F" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="30" cy="170" r="3" fill="#E74C3C" opacity="0.6">
+    <animate attributeName="cy" values="170;160;170" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="230" cy="165" r="4" fill="#E74C3C" opacity="0.7">
+    <animate attributeName="cy" values="165;175;165" dur="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Crown -->
+  <path d="M95 45 L100 30 L110 40 L120 25 L128 35 L136 25 L146 40 L156 30 L161 45 L128 50 Z"
+        fill="url(#goldGradient)"
+        stroke="#D4AC0D"
+        stroke-width="1"
+        filter="url(#finalGlow)"/>
+
+  <!-- Pixel border - gold for final boss -->
+  <rect x="2" y="2" width="252" height="252" fill="none" stroke="url(#goldGradient)" stroke-width="4" rx="8"/>
+</svg>

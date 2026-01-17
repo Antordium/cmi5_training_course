@@ -1286,21 +1286,26 @@ body {
 }
 
 .boss-sprite {
-    width: 128px;
-    height: 128px;
+    width: 180px;
+    height: 180px;
     margin: 0 auto 15px;
     background: var(--ff-dark-blue);
     border: 4px solid var(--ff-red);
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .boss-image {
-    width: 64px;
-    height: 64px;
-    background: var(--ff-red);
-    /* Placeholder - would be actual boss sprite */
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* Fallback color if no sprite loaded */
+    background-color: var(--ff-dark-blue);
 }
 
 .boss-hp-container {
@@ -1524,16 +1529,20 @@ body {
 
 .final-boss-sprite {
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
     margin: 0 auto 15px;
 }
 
 .final-boss-image {
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, var(--ff-gold) 0%, var(--ff-orange) 100%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--ff-dark-blue);
     border: 4px solid var(--ff-gold);
+    border-radius: 8px;
 }
 
 .boss-aura {
@@ -1959,6 +1968,19 @@ body {
     margin-top: 20px;
 }
 
+.menu-autosave-note {
+    text-align: center;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-shadow);
+}
+
+.menu-autosave-note small {
+    font-size: 8px;
+    color: var(--ff-light-blue);
+    opacity: 0.7;
+}
+
 /* NPC Dialog */
 .npc-dialog-box {
     max-width: 600px;
@@ -2098,6 +2120,221 @@ body {
 @keyframes floatUp {
     0% { opacity: 1; transform: translateX(-50%) translateY(0); }
     100% { opacity: 0; transform: translateX(-50%) translateY(-50px); }
+}
+
+/* ==========================================
+   INTERACTIVE ELEMENTS - SEQUENCE
+   ========================================== */
+.sequence-container {
+    padding: 20px;
+    background: rgba(168, 72, 216, 0.1);
+    border: 2px solid var(--ff-purple);
+    margin: 20px 0;
+}
+
+.sequence-container p {
+    font-size: 11px;
+    color: var(--ff-light-blue);
+    margin-bottom: 15px;
+}
+
+.sequence-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.sequence-item {
+    padding: 12px 15px;
+    background: var(--ff-dark-blue);
+    border: 3px solid var(--border-color);
+    font-size: 10px;
+    cursor: grab;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.sequence-item:hover {
+    background: var(--ff-blue);
+    border-color: var(--border-highlight);
+}
+
+.sequence-item.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+.sequence-item.correct {
+    background: rgba(88, 216, 88, 0.3);
+    border-color: var(--ff-green);
+}
+
+.sequence-item.incorrect {
+    background: rgba(232, 72, 72, 0.3);
+    border-color: var(--ff-red);
+}
+
+.sequence-feedback {
+    padding: 15px;
+    margin-bottom: 15px;
+    font-size: 11px;
+}
+
+.sequence-feedback.correct {
+    background: rgba(88, 216, 88, 0.2);
+    border: 2px solid var(--ff-green);
+    color: var(--ff-green);
+}
+
+.sequence-feedback.incorrect {
+    background: rgba(232, 72, 72, 0.2);
+    border: 2px solid var(--ff-red);
+    color: var(--ff-red);
+}
+
+/* ==========================================
+   INTERACTIVE ELEMENTS - MATCHING
+   ========================================== */
+.matching-container {
+    padding: 20px;
+    background: rgba(168, 72, 216, 0.1);
+    border: 2px solid var(--ff-purple);
+    margin: 20px 0;
+}
+
+.matching-container > p {
+    font-size: 11px;
+    color: var(--ff-light-blue);
+    margin-bottom: 15px;
+}
+
+.matching-columns {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.match-left, .match-right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    max-width: 300px;
+}
+
+.match-item {
+    padding: 12px 15px;
+    background: var(--ff-dark-blue);
+    border: 3px solid var(--border-color);
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.match-item:hover:not(.matched) {
+    background: var(--ff-blue);
+    border-color: var(--border-highlight);
+}
+
+.match-item.selected {
+    background: var(--ff-blue);
+    border-color: var(--ff-gold);
+    box-shadow: 0 0 10px var(--ff-gold);
+}
+
+.match-item.matched {
+    cursor: default;
+}
+
+.match-item.matched.correct {
+    background: rgba(88, 216, 88, 0.3);
+    border-color: var(--ff-green);
+}
+
+.match-item.incorrect {
+    background: rgba(232, 72, 72, 0.3);
+    border-color: var(--ff-red);
+}
+
+.matching-feedback {
+    padding: 15px;
+    margin-bottom: 15px;
+    font-size: 11px;
+}
+
+.matching-feedback.correct {
+    background: rgba(88, 216, 88, 0.2);
+    border: 2px solid var(--ff-green);
+    color: var(--ff-green);
+}
+
+.matching-feedback.incorrect {
+    background: rgba(232, 72, 72, 0.2);
+    border: 2px solid var(--ff-red);
+    color: var(--ff-red);
+}
+
+/* ==========================================
+   KEY POINTS LIST - FIX NUMBERS IN BOX
+   ========================================== */
+.key-points ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.key-points li {
+    position: relative;
+    margin: 10px 0;
+    padding-left: 25px;
+    font-size: 10px;
+}
+
+.key-points li::before {
+    content: counter(item);
+    counter-increment: item;
+    position: absolute;
+    left: 0;
+    color: var(--ff-cyan);
+    font-weight: bold;
+}
+
+.key-points {
+    counter-reset: item;
+}
+
+/* Numbered list styling inside dialog boxes */
+.step-container ol,
+.text-content ol,
+.dialog-box ol {
+    list-style: none;
+    padding-left: 0;
+    margin: 15px 0;
+    counter-reset: list-counter;
+}
+
+.step-container ol li,
+.text-content ol li,
+.dialog-box ol li {
+    position: relative;
+    padding-left: 30px;
+    margin: 10px 0;
+    font-size: 10px;
+    line-height: 1.8;
+}
+
+.step-container ol li::before,
+.text-content ol li::before,
+.dialog-box ol li::before {
+    counter-increment: list-counter;
+    content: counter(list-counter) ".";
+    position: absolute;
+    left: 0;
+    color: var(--ff-gold);
+    font-weight: bold;
 }
 
 /* ==========================================

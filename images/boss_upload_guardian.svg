@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Upload Guardian - World 4 Boss -->
+  <!-- An armored guardian figure blocking an upload portal -->
+
+  <defs>
+    <filter id="guardianGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="armorGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#566573"/>
+      <stop offset="50%" style="stop-color:#2C3E50"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="portalGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Upload portal behind guardian -->
+  <ellipse cx="128" cy="128" rx="100" ry="110" fill="none" stroke="#3498DB" stroke-width="8" opacity="0.3"/>
+  <ellipse cx="128" cy="128" rx="80" ry="90" fill="none" stroke="#3498DB" stroke-width="4" opacity="0.5">
+    <animate attributeName="rx" values="80;85;80" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="ry" values="90;95;90" dur="3s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <!-- Guardian body (armored) -->
+  <path d="M128 30
+           L90 50 L70 90 L65 140 L75 200 L95 230 L128 240 L161 230 L181 200
+           L191 140 L186 90 L166 50 Z"
+        fill="url(#armorGradient)"
+        stroke="#566573"
+        stroke-width="2"
+        filter="url(#guardianGlow)"/>
+
+  <!-- Helmet -->
+  <path d="M128 25 L95 45 L90 80 L100 90 L128 95 L156 90 L166 80 L161 45 Z"
+        fill="#2C3E50"
+        stroke="#566573"
+        stroke-width="2"/>
+
+  <!-- Helmet visor slit -->
+  <rect x="95" y="60" width="66" height="12" fill="#1a1a2e" rx="2"/>
+
+  <!-- Glowing eyes behind visor -->
+  <ellipse cx="115" cy="66" rx="8" ry="4" fill="#E74C3C" filter="url(#guardianGlow)"/>
+  <ellipse cx="145" cy="66" rx="8" ry="4" fill="#E74C3C" filter="url(#guardianGlow)"/>
+
+  <!-- Shoulder pauldrons -->
+  <ellipse cx="70" cy="100" rx="25" ry="20" fill="#566573" stroke="#7F8C8D" stroke-width="2"/>
+  <ellipse cx="186" cy="100" rx="25" ry="20" fill="#566573" stroke="#7F8C8D" stroke-width="2"/>
+
+  <!-- Shield -->
+  <path d="M55 110 L55 180 L85 210 L85 110 Z"
+        fill="#3498DB"
+        stroke="#2980B9"
+        stroke-width="2"
+        filter="url(#guardianGlow)"/>
+  <text x="68" y="165" font-family="monospace" font-size="20" fill="#fff" text-anchor="middle">X</text>
+
+  <!-- Sword -->
+  <rect x="175" y="80" width="8" height="120" fill="#BDC3C7"/>
+  <polygon points="179,80 167,50 179,55 191,50" fill="#BDC3C7"/>
+  <rect x="167" y="75" width="24" height="8" fill="#8B4513"/>
+
+  <!-- Chest emblem - upload arrow with X -->
+  <g transform="translate(115, 130)">
+    <polygon points="13,0 0,20 8,20 8,35 18,35 18,20 26,20" fill="#3498DB"/>
+    <text x="13" y="25" font-family="Arial" font-size="16" fill="#E74C3C" text-anchor="middle" font-weight="bold">X</text>
+  </g>
+
+  <!-- Rejected file icons floating -->
+  <g transform="translate(30, 45)" opacity="0.7">
+    <rect width="20" height="25" fill="#ECF0F1" rx="2"/>
+    <line x1="3" y1="22" x2="17" y2="3" stroke="#E74C3C" stroke-width="3"/>
+    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2s" repeatCount="indefinite"/>
+  </g>
+  <g transform="translate(205, 50)" opacity="0.6">
+    <rect width="18" height="22" fill="#ECF0F1" rx="2"/>
+    <line x1="2" y1="19" x2="16" y2="3" stroke="#E74C3C" stroke-width="3"/>
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.5s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- Error text -->
+  <text x="40" y="210" font-family="monospace" font-size="8" fill="#E74C3C" opacity="0.8">ERROR</text>
+  <text x="180" y="215" font-family="monospace" font-size="8" fill="#E74C3C" opacity="0.7">DENIED</text>
+
+  <!-- Pixel border -->
+  <rect x="2" y="2" width="252" height="252" fill="none" stroke="#3498DB" stroke-width="4" rx="8"/>
+</svg>

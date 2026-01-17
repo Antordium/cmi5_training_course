@@ -1,0 +1,100 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+env:
+  # GitHub Pages URL (auto-generated from repo info)
+  PAGES_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build and obfuscate
+        run: npm run build
+
+      - name: Update cmi5.xml URLs for GitHub Pages
+        run: |
+          # Replace relative URLs with absolute GitHub Pages URLs
+          sed -i "s|<url>index.html|<url>${PAGES_URL}/index.html|g" dist/cmi5.xml
+          echo "Updated cmi5.xml URLs to point to: ${PAGES_URL}"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      - name: Create LMS package artifact
+        run: |
+          # Create a separate cmi5.xml for LMS upload (just the manifest)
+          mkdir -p lms-package
+          cp dist/cmi5.xml lms-package/
+          echo "LMS Package created with cmi5.xml pointing to: ${PAGES_URL}"
+
+      - name: Upload LMS package
+        uses: actions/upload-artifact@v4
+        with:
+          name: cmi5-lms-package
+          path: lms-package/
+          retention-days: 90
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+
+  summary:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Deployment Summary
+        run: |
+          echo "## Deployment Complete!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Static Site" >> $GITHUB_STEP_SUMMARY
+          echo "Content deployed to: ${{ needs.deploy.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### LMS Integration" >> $GITHUB_STEP_SUMMARY
+          echo "1. Download the **cmi5-lms-package** artifact from Actions" >> $GITHUB_STEP_SUMMARY
+          echo "2. Upload **cmi5.xml** to your LMS (PCTE)" >> $GITHUB_STEP_SUMMARY
+          echo "3. The LMS will launch content from GitHub Pages" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Anti-Cheat Protection" >> $GITHUB_STEP_SUMMARY
+          echo "- course-content.js: Heavy obfuscation (test bank protected)" >> $GITHUB_STEP_SUMMARY
+          echo "- game.js: Light obfuscation" >> $GITHUB_STEP_SUMMARY

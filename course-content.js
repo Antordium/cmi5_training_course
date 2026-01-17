@@ -243,17 +243,18 @@ const WORLDS = {
                     {
                         type: 'interactive',
                         kolbPhase: 'experimentation',
-                        title: 'Build a Package Structure',
-                        instructions: 'Arrange these files in the correct package structure by dragging them to the appropriate locations.',
+                        title: 'CMI5 Package Creation Steps',
+                        instructions: 'Arrange these steps in the correct order to create a valid CMI5 package.',
                         interactiveType: 'sequence',
                         items: [
-                            '1. cmi5.xml (root level - course descriptor)',
-                            '2. index.html (root level - entry point)',
-                            '3. course.js (root level - course logic)',
-                            '4. styles.css (root level - styling)',
-                            '5. images/ folder (contains image assets)',
-                            '6. videos/ folder (contains video assets)'
-                        ]
+                            'Create your course content files (HTML, JS, CSS)',
+                            'Create the cmi5.xml manifest describing your course structure',
+                            'Organize all files in a single folder (cmi5.xml at root level)',
+                            'Test your content locally in a browser',
+                            'Create a ZIP file of the folder contents (not the folder itself)',
+                            'Validate the package structure before upload'
+                        ],
+                        requireCompletion: true
                     }
                 ]
             }
@@ -261,6 +262,7 @@ const WORLDS = {
 
         boss: {
             name: 'CONFUSION SPECTER',
+            sprite: 'images/boss_confusion_specter.svg',
             hp: 300,
             xpReward: 150,
             starReward: 5,
@@ -553,7 +555,8 @@ function shuffle(array) {
                             { left: 'Practice categorizing items', right: 'Drag and Drop' },
                             { left: 'Experience decision consequences', right: 'Branching Scenario' },
                             { left: 'Learn software procedures', right: 'Simulation' }
-                        ]
+                        ],
+                        requireCompletion: true
                     }
                 ]
             },
@@ -640,6 +643,7 @@ function shuffle(array) {
 
         boss: {
             name: 'CHAOS CREATOR',
+            sprite: 'images/boss_chaos_creator.svg',
             hp: 400,
             xpReward: 200,
             starReward: 6,
@@ -984,6 +988,7 @@ function completeCourse(passed, score) {
 
         boss: {
             name: 'XML WARLOCK',
+            sprite: 'images/boss_xml_warlock.svg',
             hp: 450,
             xpReward: 225,
             starReward: 7,
@@ -1164,7 +1169,8 @@ function completeCourse(passed, score) {
                             'Click Upload/Submit and wait for processing',
                             'Review validation results for errors',
                             'Test the content as a learner'
-                        ]
+                        ],
+                        requireCompletion: true
                     }
                 ]
             },
@@ -1241,6 +1247,7 @@ function completeCourse(passed, score) {
 
         boss: {
             name: 'UPLOAD GUARDIAN',
+            sprite: 'images/boss_upload_guardian.svg',
             hp: 500,
             xpReward: 250,
             starReward: 8,
@@ -1308,6 +1315,7 @@ function completeCourse(passed, score) {
 
         boss: {
             name: 'CMI5 GUARDIAN',
+            sprite: 'images/boss_cmi5_guardian.svg',
             hp: 1000,
             xpReward: 500,
             starReward: 10,

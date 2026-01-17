@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- XML Warlock - World 3 Boss -->
+  <!-- A dark wizard figure with XML code floating around -->
+
+  <defs>
+    <filter id="warlockGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="robeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2C3E50"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="codeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#27AE60"/>
+      <stop offset="100%" style="stop-color:#2ECC71"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Warlock robe/body -->
+  <path d="M128 40
+           C100 40 80 50 75 70
+           L60 200 L80 230 L100 210 L120 230 L140 210 L160 230 L180 210 L200 230
+           L200 200 L185 70
+           C180 50 160 40 128 40Z"
+        fill="url(#robeGradient)"
+        filter="url(#warlockGlow)"/>
+
+  <!-- Hood -->
+  <ellipse cx="128" cy="60" rx="45" ry="35" fill="#1a1a2e"/>
+
+  <!-- Face shadow inside hood -->
+  <ellipse cx="128" cy="70" rx="35" ry="30" fill="#0c0c1e"/>
+
+  <!-- Glowing eyes -->
+  <ellipse cx="115" cy="70" rx="8" ry="6" fill="#27AE60" filter="url(#warlockGlow)"/>
+  <ellipse cx="145" cy="70" rx="8" ry="6" fill="#27AE60" filter="url(#warlockGlow)"/>
+  <ellipse cx="116" cy="69" rx="3" ry="2" fill="#fff"/>
+  <ellipse cx="146" cy="69" rx="3" ry="2" fill="#fff"/>
+
+  <!-- Hands holding staff -->
+  <ellipse cx="85" cy="130" rx="12" ry="10" fill="#2C3E50"/>
+  <ellipse cx="175" cy="130" rx="12" ry="10" fill="#2C3E50"/>
+
+  <!-- Staff -->
+  <rect x="125" y="50" width="8" height="180" fill="#8B4513" rx="2"/>
+  <circle cx="129" cy="45" r="20" fill="none" stroke="#27AE60" stroke-width="4" filter="url(#warlockGlow)"/>
+  <text x="129" y="52" font-family="monospace" font-size="16" fill="#27AE60" text-anchor="middle">&lt;/&gt;</text>
+
+  <!-- Floating XML tags -->
+  <g font-family="monospace" font-size="10" fill="url(#codeGradient)" filter="url(#warlockGlow)">
+    <text x="30" y="60" opacity="0.8">&lt;au&gt;</text>
+    <text x="195" y="55" opacity="0.7">&lt;/block&gt;</text>
+    <text x="25" y="130" opacity="0.9">&lt;title&gt;</text>
+    <text x="190" y="125" opacity="0.75">&lt;url/&gt;</text>
+    <text x="35" y="190" opacity="0.85">&lt;course&gt;</text>
+    <text x="180" y="185" opacity="0.8">&lt;/xml&gt;</text>
+  </g>
+
+  <!-- Error X marks on some tags -->
+  <g fill="#E74C3C" font-weight="bold" font-size="14">
+    <text x="70" y="60">X</text>
+    <text x="215" y="180">X</text>
+  </g>
+
+  <!-- Magic particles -->
+  <circle cx="50" cy="100" r="4" fill="#27AE60" opacity="0.7">
+    <animate attributeName="cy" values="100;90;100" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="210" cy="95" r="3" fill="#2ECC71" opacity="0.6">
+    <animate attributeName="cy" values="95;105;95" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="45" cy="160" r="5" fill="#27AE60" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="215" cy="150" r="4" fill="#2ECC71" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2.2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Pixel border -->
+  <rect x="2" y="2" width="252" height="252" fill="none" stroke="#27AE60" stroke-width="4" rx="8"/>
+</svg>
